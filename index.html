@@ -39,7 +39,7 @@
       class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
     >
       <button
-        class="btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        class="btn-bd-primary dropdown-toggle d-flex align-items-center text-white"
         id="bd-theme"
         type="button"
         aria-expanded="false"
@@ -108,24 +108,31 @@
 
 
 <script>
-    document.querySelectorAll('[data-bs-theme-value]').forEach(button => {
-      button.addEventListener('click', () => {
-        const theme = button.getAttribute('data-bs-theme-value');
-        document.documentElement.setAttribute('data-bs-theme', theme);
+  // Select the main toggle icon
+  const themeIcon = document.querySelector('.theme-icon-active');
 
-        if(theme == button.getAttribute('data-bs-theme-value')){
-            document.querySelectorAll('[data-bs-theme-value]').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-                btn.querySelector('svg.bi.ms-auto').classList.add('d-none');
-            });
-            button.classList.add('active');
-            button.setAttribute('aria-pressed', 'true');
-            button.querySelector('svg.bi.ms-auto').classList.remove('d-none');
-        }
+  document.querySelectorAll('[data-bs-theme-value]').forEach(button => {
+    button.addEventListener('click', () => {
+      const theme = button.getAttribute('data-bs-theme-value');
+      document.documentElement.setAttribute('data-bs-theme', theme);
+
+      // Update dropdown active button & checkmarks
+      document.querySelectorAll('[data-bs-theme-value]').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.querySelector('svg.bi.ms-auto').classList.add('d-none');
       });
-      
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+      button.querySelector('svg.bi.ms-auto').classList.remove('d-none');
+
+      // Update main toggle icon
+      if(theme === 'light') themeIcon.querySelector('use').setAttribute('href', '#sun-fill');
+      else if(theme === 'dark') themeIcon.querySelector('use').setAttribute('href', '#moon-stars-fill');
+      else themeIcon.querySelector('use').setAttribute('href', '#circle-half'); // auto
     });
+  });
 </script>
+
 </body>
 </html>

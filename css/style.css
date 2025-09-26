@@ -31,6 +31,7 @@
         inset 0 0.125em 0.5em #00000026;
 }
 
+
 .b-example-vr {
     flex-shrink: 0;
     width: 1.5rem;
@@ -42,9 +43,8 @@
     fill: currentColor;
 }
 
-
 .btn-bd-primary {
-    background-color: #712cf9;
+    background-color: rgb(94, 63, 199);
     padding: 0.55rem 0.9rem;
     border-radius: 0.35rem;
 }
